@@ -11,30 +11,29 @@ import ObjectiveRocks
 
 class RocksDBBasicTests : RocksDBTests {
 
-	func testSwift_DB_Open_ErrorIfExists() {
-		rocks = RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
+	func testSwift_DB_Open_ErrorIfExists() throws {
+		rocks = try RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
 			options.createIfMissing = true
 		})
 		rocks.close()
 
-		let db = RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
+		XCTAssertThrowsError(try RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
 			options.errorIfExists = true
-		})
-
-		XCTAssertNil(db)
+		}))
 	}
     
-    func testSwift_DB_IsClosed() {
-        rocks = RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
+    func testSwift_DB_IsClosed() throws {
+        rocks = try RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
             options.createIfMissing = true
         })
         XCTAssertFalse(rocks.isClosed())
         rocks.close()
         XCTAssertTrue(rocks.isClosed())
+        XCTAssertThrowsError(try rocks.data(forKey: "key 1"));
     }
 
-	func testSwift_DB_CRUD() {
-		rocks = RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
+	func testSwift_DB_CRUD() throws {
+		rocks = try RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
 			options.createIfMissing = true
 		})
 		rocks.setDefault(

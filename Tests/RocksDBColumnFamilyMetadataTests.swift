@@ -11,12 +11,12 @@ import ObjectiveRocks
 
 class RocksDBColumnFamilyMetadataTests : RocksDBTests {
 
-	func testSwift_ColumnFamilies_Metadata() {
+	func testSwift_ColumnFamilies_Metadata() throws {
 		let descriptor = RocksDBColumnFamilyDescriptor()
 		descriptor.addDefaultColumnFamily(options: nil)
 		descriptor.addColumnFamily(withName: "new_cf", andOptions: nil)
 
-		rocks = RocksDB.database(atPath: self.path, columnFamilies: descriptor, andDatabaseOptions: { (options) -> Void in
+		rocks = try RocksDB.database(atPath: self.path, columnFamilies: descriptor, andDatabaseOptions: { (options) -> Void in
 			options.createIfMissing = true
 			options.createMissingColumnFamilies = true
 		})

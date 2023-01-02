@@ -11,8 +11,8 @@ import ObjectiveRocks
 
 class RocksDBPrefixExtractorTests : RocksDBTests {
 
-	func testSwift_PrefixExtractor_FixedLength() {
-		rocks = RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
+	func testSwift_PrefixExtractor_FixedLength() throws {
+		rocks = try RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
 			options.createIfMissing = true
 			options.prefixExtractor = RocksDBPrefixExtractor(type: .fixedLength, length: 3)
 		})
@@ -58,7 +58,7 @@ class RocksDBPrefixExtractorTests : RocksDBTests {
 		XCTAssertEqual(iterator.key(), "100B".data)
 	}
 
-	func testSwift_PrefixExtractor_FixedLength_CustomComparator() {
+	func testSwift_PrefixExtractor_FixedLength_CustomComparator() throws {
 		// 1001 < 9910 < 2011 < 3412 ...
 		let cmp = RocksDBComparator(name: "cmp") { (key1, key2) -> Int32 in
 			let str1 = String(data: key1, encoding: .utf8)!
@@ -78,7 +78,7 @@ class RocksDBPrefixExtractorTests : RocksDBTests {
 			}
 		}
 
-		rocks = RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
+		rocks = try RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
 			options.createIfMissing = true
 			options.comparator = cmp
 			options.prefixExtractor = RocksDBPrefixExtractor(type: .fixedLength, length: 2)

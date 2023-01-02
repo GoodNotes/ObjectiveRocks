@@ -11,8 +11,8 @@ import ObjectiveRocks
 
 class RocksDBSnapshotTests : RocksDBTests {
 
-	func testSwift_Snapshot() {
-		rocks = RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
+	func testSwift_Snapshot() throws {
+		rocks = try RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
 			options.createIfMissing = true
 		});
 
@@ -36,8 +36,8 @@ class RocksDBSnapshotTests : RocksDBTests {
 		XCTAssertEqual(try! snapshot.data(forKey: "key 4"), "value 4".data)
 	}
 
-	func testSwift_Snapshot_Iterator() {
-		rocks = RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
+	func testSwift_Snapshot_Iterator() throws {
+		rocks = try RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
 			options.createIfMissing = true
 		})
 
@@ -72,8 +72,8 @@ class RocksDBSnapshotTests : RocksDBTests {
 		XCTAssertEqual(actual, expected)
 	}
 
-	func testSwift_Snapshot_SequenceNumber() {
-		rocks = RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
+	func testSwift_Snapshot_SequenceNumber() throws {
+		rocks = try RocksDB.database(atPath: self.path, andDBOptions: { (options) -> Void in
 			options.createIfMissing = true
 		})
 
