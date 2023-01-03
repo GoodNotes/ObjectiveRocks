@@ -25,7 +25,6 @@ let package = Package(
             exclude: [
                 "RocksDBWriteBatchIterator+Private.h",
 
-
                 "RocksDBColumnFamilyMetadata.h",
                 "RocksDBIndexedWriteBatch.h",
                 "RocksDBWriteBatchIterator.h",
@@ -52,7 +51,6 @@ let package = Package(
                 "RocksDBBackupEngine.mm",
                 "RocksDBBackupInfo.mm",
 
-
                 "RocksDBError.h",
                 "RocksDBSlice.h",
 
@@ -60,16 +58,6 @@ let package = Package(
                 "RocksDBCallbackComparator.h",
                 "RocksDBCallbackMergeOperator.h",
                 "RocksDBCallbackSliceTransform.h",
-
-//                "RocksDB+Private.h",
-//                "RocksDBColumnFamily+Private.h",
-//                "RocksDBColumnFamilyMetaData+Private.h",
-//                "RocksDBCompactRangeOptions+Private.h",
-//                "RocksDBIndexedWriteBatch+Private.h",
-//                "RocksDBIterator+Private.h",
-//                "RocksDBOptions+Private.h",
-//                "RocksDBSnapshot+Private.h",
-//                "RocksDBWriteBatch+Private.h",
             ],
             publicHeadersPath: "./",
             cxxSettings: [
@@ -325,7 +313,6 @@ let package = Package(
                     "rocksdb/options",
                     "rocksdb/port",
                     "rocksdb/table",
-//                   "test_util",
                     "rocksdb/trace_replay",
                     "rocksdb/util",
                     "rocksdb/utilities",
@@ -333,6 +320,7 @@ let package = Package(
                 publicHeadersPath: "rocksdb/include",
                 cxxSettings: [
                     .headerSearchPath("./rocksdb"),
+                    .headerSearchPath("./lz4/lib"),
                     .define("ROCKSDB_LITE"),
                     .define("NROCKSDB_THREAD_STATUS"),
                     .define("IOS_CROSS_COMPILE", .when(platforms: [.iOS])),
@@ -341,14 +329,11 @@ let package = Package(
                     .define("PORTABLE"),
                     .define("OS_MACOSX"),
                     .define("NDEBUG"),
-                    .define("NPERF_CONTEXT"), // TODO: Check
-                    .define("NIOSTATS_CONTEXT"), // TODO: Check
+                    .define("NPERF_CONTEXT"),
+                    .define("NIOSTATS_CONTEXT"),
+                    .define("LZ4")
                 ]
                ),
-
-//        .testTarget(
-//            name: "ObjectiveRocksTests",
-//            dependencies: ["ObjectiveRocks"]),
     ],
     cxxLanguageStandard: .cxx11
 )
