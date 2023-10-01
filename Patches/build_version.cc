@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "rocksdb/version.h"
+#include "rocksdb/utilities/object_registry.h"
 #include "util/string_util.h"
 
 // The build script may replace these values with real values based
@@ -10,6 +11,10 @@
 static const std::string rocksdb_build_git_sha  = "rocksdb_build_git_sha:145a50ba007326eab90da9b12d697b35f5b60e7d";
 static const std::string rocksdb_build_git_tag = "rocksdb_build_git_tag:v8.5.4";
 static const std::string rocksdb_build_date = "rocksdb_build_date:2023-09-27 04:47:02";
+
+std::unordered_map<std::string, ROCKSDB_NAMESPACE::RegistrarFunc> ROCKSDB_NAMESPACE::ObjectRegistry::builtins_ = {
+
+};
 
 namespace ROCKSDB_NAMESPACE {
 static void AddProperty(std::unordered_map<std::string, std::string> *props, const std::string& name) {
