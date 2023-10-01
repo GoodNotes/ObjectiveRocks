@@ -122,18 +122,6 @@ typedef NS_ENUM(char, RocksDBCompressionType)
 /** @brief Default: 10 */
 @property (nonatomic, assign) double maxBytesForLevelMultiplier;
 
-/** @brief Puts are delayed 0-1 ms when any level has a compaction score that
- exceeds this limit.
- Default: 0 (disabled)
- */
-@property (nonatomic, assign) double softRateLimit;
-
-/** @brief Puts are delayed 1ms at a time when any level has a compaction
- score that exceeds this limit.
- Default: 0 (disabled)
- */
-@property (nonatomic, assign) double hardRateLimit;
-
 /** @brief Size of one block in arena memory allocation.
  Default: 0
  */
@@ -142,9 +130,6 @@ typedef NS_ENUM(char, RocksDBCompressionType)
 /** @brief Disable automatic compactions. Manual compactions can still be issued
  on the column family. */
 @property (nonatomic, assign) BOOL disableAutoCompactions;
-
-/** @brief Purge duplicate/deleted keys when a memtable is flushed to storage. */
-@property (nonatomic, assign) BOOL purgeRedundantKvsWhileFlush;
 
 /** @brief An iteration->Next() sequentially skips over keys with the same
  user-key unless this option is set.

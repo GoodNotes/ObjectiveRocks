@@ -52,15 +52,6 @@ typedef NS_ENUM(char, BlockBasedTableChecksumType) {
 @property (nonatomic, assign) BlockBasedTableIndexType indexType;
 
 /**
- @brief 
-  Influence the behavior when kHashSearch is used.
-  if false, stores a precise prefix to block range mapping
-  if true, does not store prefix and allows prefix hash collision
-  (less memory consumption)
- */
-@property (nonatomic, assign) BOOL hashIndexAllowCollision;
-
-/**
  @brief
   Use the specified checksum type. Newly created table files will be
   protected with this checksum type. Old table files will still be readable,
