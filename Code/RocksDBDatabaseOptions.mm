@@ -9,6 +9,7 @@
 #import "RocksDBDatabaseOptions.h"
 
 #import "RocksDBEnv.h"
+#import "RocksDBEnv+Private.h"
 #import <rocksdb/options.h>
 
 #if !(defined(ROCKSDB_LITE) && defined(TARGET_OS_IPHONE))
@@ -184,6 +185,10 @@
 
 - (void)setWalRecoveryMode:(RocksDBWALRecoveryMode)walRecoveryMode {
     _options.wal_recovery_mode = (rocksdb::WALRecoveryMode)walRecoveryMode;
+}
+
+- (void)setEnv:(RocksDBEnv*)env {
+    _options.env = env.env;
 }
 
 @end

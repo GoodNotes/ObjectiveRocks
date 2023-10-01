@@ -118,6 +118,8 @@ NS_ASSUME_NONNULL_BEGIN
  Default: kPointInTimeRecovery */
 @property (nonatomic, assign) RocksDBWALRecoveryMode walRecoveryMode;
 
+- (void)setEnv:(RocksDBEnv*)env;
+
 @end
 
 #pragma mark - Column Family Options

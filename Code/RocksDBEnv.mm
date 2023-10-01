@@ -62,7 +62,7 @@
 - (void)dealloc
 {
 	@synchronized(self) {
-		if (_env != nullptr) {
+		if (_env != nullptr && _env != rocksdb::Env::Default()) {
 			delete _env;
 			_env = nullptr;
 		}
