@@ -7,9 +7,9 @@
 
 // The build script may replace these values with real values based
 // on whether or not GIT is available and the platform settings
-static const std::string rocksdb_build_git_sha  = "rocksdb_build_git_sha:da11a59034584ea2d0911268b8136e5249d6b692";
-static const std::string rocksdb_build_git_tag = "rocksdb_build_git_tag:v6.29.5";
-static const std::string rocksdb_build_date = "rocksdb_build_date:2022-03-02 17:41:02";
+static const std::string rocksdb_build_git_sha  = "rocksdb_build_git_sha:145a50ba007326eab90da9b12d697b35f5b60e7d";
+static const std::string rocksdb_build_git_tag = "rocksdb_build_git_tag:v8.5.4";
+static const std::string rocksdb_build_date = "rocksdb_build_date:2023-09-27 04:47:02";
 
 namespace ROCKSDB_NAMESPACE {
 static void AddProperty(std::unordered_map<std::string, std::string> *props, const std::string& name) {
@@ -38,9 +38,9 @@ const std::unordered_map<std::string, std::string>& GetRocksBuildProperties() {
 }
 
 std::string GetRocksVersionAsString(bool with_patch) {
-    std::string version = ToString(ROCKSDB_MAJOR) + "." + ToString(ROCKSDB_MINOR);
+    std::string version = std::to_string(ROCKSDB_MAJOR) + "." + std::to_string(ROCKSDB_MINOR);
     if (with_patch) {
-        return version + "." + ToString(ROCKSDB_PATCH);
+        return version + "." + std::to_string(ROCKSDB_PATCH);
     } else {
         return version;
     }
