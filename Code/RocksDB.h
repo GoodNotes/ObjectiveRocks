@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @class RocksDBColumnFamily;
 @class RocksDBSnapshot;
 
+typedef void (^RestoreBlock)(NSError * __autoreleasing *);
+
 #pragma mark - Initializing the database
 
 @interface RocksDB : NSObject
@@ -583,8 +585,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Bulk Load
 ///--------------------------------
 
-- (nullable id)prepareForBulkLoad:(id (NS_NOESCAPE ^)(void))actionBlock
-                            error:(NSError * __autoreleasing *)error;
+- (nullable RestoreBlock)setupBulkLoad:(NSError * __autoreleasing *)error;
+
+- (nullable id)withBulkLoad:(id (NS_NOESCAPE ^)(void))actionBlock
+                      error:(NSError * __autoreleasing *)error;
 
 @end
 

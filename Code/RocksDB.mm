@@ -729,9 +729,7 @@
 
 #pragma mark - Bulk Load
 
-- (nullable id)prepareForBulkLoad:(id (NS_NOESCAPE ^)(void))actionBlock
-                            error:(NSError * __autoreleasing *)error
-{
+- (nullable RestoreBlock)setupBulkLoad:(NSError * __autoreleasing *)error {
     if (_closed.load()) {
         *error = [RocksDBError errorIsClosed];
         return nil;
@@ -760,37 +758,46 @@
         return nil;
     }
 
+    return ^(NSError **error) {
+        // Restore the original options.
+        std::unordered_map<std::string, std::string> restoredOptions = {
+            {"level0_file_num_compaction_trigger", std::to_string(savedOptions.level0_file_num_compaction_trigger)},
+            {"level0_slowdown_writes_trigger", std::to_string(savedOptions.level0_slowdown_writes_trigger)},
+            {"level0_stop_writes_trigger", std::to_string(savedOptions.level0_stop_writes_trigger)},
+            {"soft_pending_compaction_bytes_limit", std::to_string(savedOptions.soft_pending_compaction_bytes_limit)},
+            {"hard_pending_compaction_bytes_limit", std::to_string(savedOptions.hard_pending_compaction_bytes_limit)},
+            {"disable_auto_compactions", savedOptions.disable_auto_compactions ? "true" : "false"},
+            {"max_compaction_bytes", std::to_string(savedOptions.max_compaction_bytes)},
+            {"max_write_buffer_number", std::to_string(savedOptions.max_write_buffer_number)},
+            {"target_file_size_base", std::to_string(savedOptions.target_file_size_base)}
+        };
+
+        rocksdb::Status s = _db->SetOptions(restoredOptions);
+        if (!s.ok()) {
+            *error = [RocksDBError errorWithRocksStatus:s];
+            return;
+        }
+
+        [self compactRange:RocksDBMakeKeyRange(nil, nil)
+               withOptions:^(RocksDBCompactRangeOptions * _Nonnull options) { } error
+                          :error];
+    };
+}
+
+- (nullable id)withBulkLoad:(id (NS_NOESCAPE ^)(void))actionBlock
+                      error:(NSError * __autoreleasing *)error
+{
+    RestoreBlock restoreBlock = [self setupBulkLoad:error];
+
     id result = actionBlock();
 
-    // Restore the original options.
-    std::unordered_map<std::string, std::string> restoredOptions = {
-        {"level0_file_num_compaction_trigger", std::to_string(savedOptions.level0_file_num_compaction_trigger)},
-        {"level0_slowdown_writes_trigger", std::to_string(savedOptions.level0_slowdown_writes_trigger)},
-        {"level0_stop_writes_trigger", std::to_string(savedOptions.level0_stop_writes_trigger)},
-        {"soft_pending_compaction_bytes_limit", std::to_string(savedOptions.soft_pending_compaction_bytes_limit)},
-        {"hard_pending_compaction_bytes_limit", std::to_string(savedOptions.hard_pending_compaction_bytes_limit)},
-        {"disable_auto_compactions", savedOptions.disable_auto_compactions ? "true" : "false"},
-        {"max_compaction_bytes", std::to_string(savedOptions.max_compaction_bytes)},
-        {"max_write_buffer_number", std::to_string(savedOptions.max_write_buffer_number)},
-        {"target_file_size_base", std::to_string(savedOptions.target_file_size_base)}
-    };
+    restoreBlock(error);
 
-    s = _db->SetOptions(restoredOptions);
-    if (!s.ok()) {
-        *error = [RocksDBError errorWithRocksStatus:s];
-        return nil;
-    }
-
-    BOOL compacted = [self compactRange:RocksDBMakeKeyRange(nil, nil)
-                            withOptions:^(RocksDBCompactRangeOptions * _Nonnull options) { } error
-                                       :error];
-
-    if (!compacted) {
+    if (*error != nil) {
         return nil;
     }
 
     return result;
 }
-
 
 @end
