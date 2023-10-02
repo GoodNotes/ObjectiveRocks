@@ -8,10 +8,7 @@
 
 #import "RocksDBEnv.h"
 
-#if ROCKSDB_USING_THREAD_STATUS
 #import "RocksDBThreadStatus.h"
-#endif
-
 #import <rocksdb/env.h>
 #import <rocksdb/thread_status.h>
 
@@ -24,7 +21,6 @@
 @property (nonatomic, assign) rocksdb::Env *env;
 @end
 
-#if ROCKSDB_USING_THREAD_STATUS
 @interface RocksDBThreadStatus ()
 @property (nonatomic, assign) uint64_t threadId;
 @property (nonatomic, assign) RocksDBThreadType threadType;
@@ -33,7 +29,6 @@
 @property (nonatomic, assign) RocksDBOperationType operationType;
 @property (nonatomic, assign) RocksDBStateType stateType;
 @end
-#endif
 
 #pragma mark - Impl
 
@@ -83,8 +78,6 @@
 	_env->SetBackgroundThreads(numThreads, rocksdb::Env::LOW);
 }
 
-#if ROCKSDB_USING_THREAD_STATUS
-
 - (NSArray *)threadList
 {
 	std::vector<rocksdb::ThreadStatus> thread_list;
@@ -104,7 +97,5 @@
 
 	return threadList;
 }
-
-#endif
 
 @end

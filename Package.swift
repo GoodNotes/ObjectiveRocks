@@ -28,7 +28,6 @@ let package = Package(
                 "RocksDBColumnFamilyMetadata.h",
                 "RocksDBIndexedWriteBatch.h",
                 "RocksDBWriteBatchIterator.h",
-                "RocksDBThreadStatus.h",
                 "RocksDBPlainTableOptions.h",
                 "RocksDBCuckooTableOptions.h",
                 "RocksDBProperties.h",
@@ -41,7 +40,6 @@ let package = Package(
                 "RocksDBColumnFamilyMetadata.mm",
                 "RocksDBIndexedWriteBatch.mm",
                 "RocksDBWriteBatchIterator.mm",
-                "RocksDBThreadStatus.mm",
                 "RocksDBPlainTableOptions.mm",
                 "RocksDBCuckooTableOptions.mm",
                 "RocksDBProperties.mm",
@@ -62,14 +60,11 @@ let package = Package(
             publicHeadersPath: "./",
             cxxSettings: [
                 .define("ROCKSDB_LITE"),
-                .define("NROCKSDB_THREAD_STATUS"),
             ]
         ),
         .target(name: "librocksdb",
                 path: ".",
                 exclude: [
-                    "rocksdb/cache/cache_bench.cc",
-
                     "rocksdb/db/c.cc",
                     "rocksdb/db/db_test2.cc",
                     "rocksdb/db/db_test_util.cc",
@@ -78,15 +73,10 @@ let package = Package(
                     "rocksdb/db/db_test_util.cc",
                     "rocksdb/db/db_with_timestamp_test_util.cc",
                     "rocksdb/db/c_test.c",
-                    "rocksdb/db/forward_iterator_bench.cc",
-                    "rocksdb/db/range_del_aggregator_bench.cc",
 
                     "rocksdb/include/rocksdb/c.h",
 
-                    "rocksdb/memtable/memtablerep_bench.cc",
-
                     "rocksdb/table/mock_table.cc",
-                    "rocksdb/table/table_reader_bench.cc",
 
                     "rocksdb/test_util/testharness.cc",
                     "rocksdb/test_util/secondary_cache_test_util.cc",
@@ -94,12 +84,7 @@ let package = Package(
 
                     "rocksdb/utilities/cassandra",
 
-                    "rocksdb/utilities/persistent_cache/hash_table_bench.cc",
-                    "rocksdb/utilities/persistent_cache/persistent_cache_bench.cc",
-
                     "rocksdb/util/crc32c_ppc_asm.S",
-                    "rocksdb/util/log_write_bench.cc",
-                    "rocksdb/util/filter_bench.cc",
 
                     "rocksdb/util/build_version.cc",
 
@@ -109,6 +94,19 @@ let package = Package(
                     "rocksdb/utilities/transactions/lock/range/range_tree/lib/COPYING.APACHEv2",
                     "rocksdb/utilities/transactions/lock/range/range_tree/lib/COPYING.GPLv2",
                     "rocksdb/utilities/transactions/lock/range/range_tree/lib/README",
+
+                    "rocksdb/tools/db_bench.cc",
+                    "rocksdb/cache/cache_bench.cc",
+                    "rocksdb/util/log_write_bench.cc",
+                    "rocksdb/util/filter_bench.cc",
+                    "rocksdb/memtable/memtablerep_bench.cc",
+                    "rocksdb/utilities/persistent_cache/persistent_cache_bench.cc",
+                    "rocksdb/utilities/persistent_cache/hash_table_bench.cc",
+                    "rocksdb/microbench/ribbon_bench.cc",
+                    "rocksdb/microbench/db_basic_bench.cc",
+                    "rocksdb/table/table_reader_bench.cc",
+                    "rocksdb/db/forward_iterator_bench.cc",
+                    "rocksdb/db/range_del_aggregator_bench.cc",
 
                     "rocksdb/options/customizable_test.cc",
                     "rocksdb/options/options_test.cc",
@@ -341,7 +339,6 @@ let package = Package(
                     .headerSearchPath("./rocksdb"),
                     .headerSearchPath("./lz4/lib"),
                     .define("ROCKSDB_LITE"),
-                    .define("NROCKSDB_THREAD_STATUS"),
                     .define("IOS_CROSS_COMPILE", .when(platforms: [.iOS])),
                     .define("ROCKSDB_PLATFORM_POSIX"),
                     .define("ROCKSDB_LIB_IO_POSIX"),
