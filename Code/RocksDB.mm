@@ -727,4 +727,70 @@
 	return YES;
 }
 
+#pragma mark - Bulk Load
+
+- (nullable id)prepareForBulkLoad:(id (NS_NOESCAPE ^)(void))actionBlock
+                            error:(NSError * __autoreleasing *)error
+{
+    if (_closed.load()) {
+        *error = [RocksDBError errorIsClosed];
+        return nil;
+    }
+
+    // Save the current options to restore them later.
+    rocksdb::Options savedOptions = _db->GetOptions();
+
+    // Create an unordered_map with the bulk load settings.
+    std::unordered_map<std::string, std::string> bulkOptions = {
+        {"level0_file_num_compaction_trigger", std::to_string((1<<30))},
+        {"level0_slowdown_writes_trigger", std::to_string((1<<30))},
+        {"level0_stop_writes_trigger", std::to_string((1<<30))},
+        {"soft_pending_compaction_bytes_limit", "0"},
+        {"hard_pending_compaction_bytes_limit", "0"},
+        {"disable_auto_compactions", "true"},
+        {"max_compaction_bytes", std::to_string(static_cast<uint64_t>(1) << 60)},
+        {"max_write_buffer_number", "6"},
+        {"target_file_size_base", std::to_string(256 * 1024 * 1024)}
+    };
+
+    // Set the bulk load options.
+    rocksdb::Status s = _db->SetOptions(bulkOptions);
+    if (!s.ok()) {
+        *error = [RocksDBError errorWithRocksStatus:s];
+        return nil;
+    }
+
+    id result = actionBlock();
+
+    // Restore the original options.
+    std::unordered_map<std::string, std::string> restoredOptions = {
+        {"level0_file_num_compaction_trigger", std::to_string(savedOptions.level0_file_num_compaction_trigger)},
+        {"level0_slowdown_writes_trigger", std::to_string(savedOptions.level0_slowdown_writes_trigger)},
+        {"level0_stop_writes_trigger", std::to_string(savedOptions.level0_stop_writes_trigger)},
+        {"soft_pending_compaction_bytes_limit", std::to_string(savedOptions.soft_pending_compaction_bytes_limit)},
+        {"hard_pending_compaction_bytes_limit", std::to_string(savedOptions.hard_pending_compaction_bytes_limit)},
+        {"disable_auto_compactions", savedOptions.disable_auto_compactions ? "true" : "false"},
+        {"max_compaction_bytes", std::to_string(savedOptions.max_compaction_bytes)},
+        {"max_write_buffer_number", std::to_string(savedOptions.max_write_buffer_number)},
+        {"target_file_size_base", std::to_string(savedOptions.target_file_size_base)}
+    };
+
+    s = _db->SetOptions(restoredOptions);
+    if (!s.ok()) {
+        *error = [RocksDBError errorWithRocksStatus:s];
+        return nil;
+    }
+
+    BOOL compacted = [self compactRange:RocksDBMakeKeyRange(nil, nil)
+                            withOptions:^(RocksDBCompactRangeOptions * _Nonnull options) { } error
+                                       :error];
+
+    if (!compacted) {
+        return nil;
+    }
+
+    return result;
+}
+
+
 @end

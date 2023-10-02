@@ -575,4 +575,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+#pragma mark - Bulk Load
+
+@interface RocksDB (BulkLoad)
+
+///--------------------------------
+/// @name Bulk Load
+///--------------------------------
+
+- (nullable id)prepareForBulkLoad:(id (NS_NOESCAPE ^)(void))actionBlock
+                            error:(NSError * __autoreleasing *)error;
+
+@end
+
 NS_ASSUME_NONNULL_END
