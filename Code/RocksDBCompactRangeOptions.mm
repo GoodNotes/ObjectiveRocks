@@ -7,6 +7,7 @@
 //
 
 #import "RocksDBCompactRangeOptions.h"
+#import "RocksDBCompactRangeOptions+Private.h"
 
 #import <rocksdb/options.h>
 
@@ -14,9 +15,12 @@
 {
 	rocksdb::CompactRangeOptions _options;
 }
+@property (nonatomic, assign) rocksdb::CompactRangeOptions options;
 @end
 
 @implementation RocksDBCompactRangeOptions
+
+@synthesize options = _options;
 
 #pragma mark - Lifecycle
 
