@@ -659,6 +659,10 @@
 
 - (RocksDBIterator *)iteratorWithReadOptions:(void (^)(RocksDBReadOptions *readOptions))readOptionsBlock
 {
+	if (_closed.load()) {
+		return nil;
+	}
+
 	RocksDBReadOptions *readOptions = [_readOptions copy];
 	if (readOptionsBlock) {
 		readOptionsBlock(readOptions);

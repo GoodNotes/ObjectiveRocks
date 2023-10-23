@@ -507,7 +507,7 @@ typedef void (^RestoreBlock)(NSError * __autoreleasing *);
 
  @see RocksDBIterator
  */
-- (RocksDBIterator *)iterator;
+- (nullable RocksDBIterator *)iterator;
 
 /**
  Returns an iterator instance for scan operations
@@ -518,7 +518,7 @@ typedef void (^RestoreBlock)(NSError * __autoreleasing *);
  @see RocksDBIterator
  @see RocksDBReadOptions
  */
-- (RocksDBIterator *)iteratorWithReadOptions:(nullable void (^)(RocksDBReadOptions *readOptions))readOptions;
+- (nullable RocksDBIterator *)iteratorWithReadOptions:(nullable void (^)(RocksDBReadOptions *readOptions))readOptions;
 
 @end
 
@@ -535,7 +535,7 @@ typedef void (^RestoreBlock)(NSError * __autoreleasing *);
 
  @see RocksDBSnapshot
  */
-- (RocksDBSnapshot *)snapshot;
+- (nullable RocksDBSnapshot *)snapshot;
 
 /**
  Returns a snapshot of the DB. A snapshot provides consistent read-only view over the state of the key-value store.
@@ -545,7 +545,7 @@ typedef void (^RestoreBlock)(NSError * __autoreleasing *);
  @see RocksDBSnapshot
  @see RocksDBReadOptions
  */
-- (RocksDBSnapshot *)snapshotWithReadOptions:(nullable void (^)(RocksDBReadOptions *readOptions))readOptions;
+- (nullable RocksDBSnapshot *)snapshotWithReadOptions:(nullable void (^)(RocksDBReadOptions *readOptions))readOptions;
 
 @end
 
