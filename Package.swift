@@ -349,6 +349,7 @@ let package = Package(
                     .define("NPERF_CONTEXT"),
                     .define("NIOSTATS_CONTEXT"),
                     .define("LZ4"),
+                    .define("HAVE_FULLFSYNC"),
                 ]
                ),
     ],
