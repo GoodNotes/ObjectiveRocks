@@ -8,7 +8,6 @@
 
 import XCTest
 import ObjectiveRocks
-
 class RocksDBBasicTests : RocksDBTests {
 
 	func testSwift_DB_Open_ErrorIfExists() throws {

@@ -11,7 +11,7 @@
 #import "RocksDBBackupInfo.h"
 
 #include <rocksdb/db.h>
-#include <rocksdb/utilities/backupable_db.h>
+#include <rocksdb/utilities/backup_engine.h>
 
 #pragma mark - Informal Protocols
 
@@ -45,7 +45,7 @@
 	if (self) {
 		_path = [path copy];
 		rocksdb::Status status = rocksdb::BackupEngine::Open(rocksdb::Env::Default(),
-															 rocksdb::BackupableDBOptions(_path.UTF8String),
+															 rocksdb::BackupEngineOptions(_path.UTF8String),
 															 &_backupEngine);
 		if (!status.ok()) {
 			NSLog(@"Error opening database backup: %@", [RocksDBError errorWithRocksStatus:status]);

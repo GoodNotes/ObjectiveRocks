@@ -1,6 +1,0 @@
-[submodule "rocksdb"]
-	path = rocksdb
-	url = https://github.com/facebook/rocksdb.git
-[submodule "lz4"]
-	path = lz4
-	url = git@github.com:lz4/lz4.git

@@ -21,7 +21,7 @@ class RocksDBComparatorTests : RocksDBTests {
 		try! rocks.setData("abc2", forKey: "abc2")
 		try! rocks.setData("abc3", forKey: "abc3")
 
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 
 		iterator.seekToFirst()
 
@@ -70,7 +70,7 @@ class RocksDBComparatorTests : RocksDBTests {
 		try! rocks.setData("abc2", forKey: "abc2")
 		try! rocks.setData("abc3", forKey: "abc3")
 
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 
 		iterator.seekToFirst()
 
@@ -130,7 +130,7 @@ class RocksDBComparatorTests : RocksDBTests {
 		/* Expected Array: [A0, A1, A10, A100, A1000, A1001, A1019, A102, A1020, ...] */
 		expected.sort()
 
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 		var idx = 0
 
 		iterator.enumerateKeys { (key, stop) -> Void in
@@ -156,7 +156,7 @@ class RocksDBComparatorTests : RocksDBTests {
 		/* Expected Array: [A9999, A9998 .. A9990, A999, A9989, ...] */
 		expected.sort()
 
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 		var idx = 9999
 
 		iterator.enumerateKeys { (key, stop) -> Void in

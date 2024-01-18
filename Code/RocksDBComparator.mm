@@ -42,14 +42,14 @@
 			return [[self alloc] initWithName:@"objectiverocks.string.compare.asc" andBlock:^int(NSData *key1, NSData *key2) {
 				NSString *str1 = [[NSString alloc] initWithData:key1 encoding:NSUTF8StringEncoding];
 				NSString *str2 = [[NSString alloc] initWithData:key2 encoding:NSUTF8StringEncoding];
-				return [str1 compare:str2];
+				return (int)[str1 compare:str2];
 			}];
 
 		case RocksDBComparatorStringCompareDescending:
 			return [[self alloc] initWithName:@"objectiverocks.string.compare.desc" andBlock:^int(NSData *key1, NSData *key2) {
 				NSString *str1 = [[NSString alloc] initWithData:key1 encoding:NSUTF8StringEncoding];
 				NSString *str2 = [[NSString alloc] initWithData:key2 encoding:NSUTF8StringEncoding];
-				return -1 * [str1 compare:str2];
+				return -1 * (int)[str1 compare:str2];
 			}];
 	}
 }

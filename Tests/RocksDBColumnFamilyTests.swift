@@ -258,7 +258,7 @@ class RocksDBColumnFamilyTests : RocksDBTests {
 		try! newColumnFamily.setData("cf_value1", forKey: "cf_key1")
 		try! newColumnFamily.setData("cf_value2", forKey: "cf_key2")
 
-		let dfIterator = defaultColumnFamily.iterator()
+		let dfIterator = defaultColumnFamily.iterator()!
 
 		var actual = [String]()
 
@@ -274,7 +274,7 @@ class RocksDBColumnFamilyTests : RocksDBTests {
 
 		dfIterator.close()
 
-		let cfIterator = newColumnFamily.iterator()
+		let cfIterator = newColumnFamily.iterator()!
 
 		actual.removeAll()
 

@@ -21,7 +21,7 @@ class RocksDBIteratorTests : RocksDBTests {
 		try! rocks.setData("value 3", forKey: "key 3")
 
 		var actual = [String]()
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 
 		iterator.seekToFirst()
 		while iterator.isValid() {
@@ -43,7 +43,7 @@ class RocksDBIteratorTests : RocksDBTests {
 		try! rocks.setData("value 1", forKey: "key 1")
 		try! rocks.setData("value 2", forKey: "key 2")
 
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 
 		iterator.seekToFirst()
 
@@ -88,7 +88,7 @@ class RocksDBIteratorTests : RocksDBTests {
 		try! rocks.setData("value 3", forKey: "key 3")
 
 		var actual = [String]()
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 
 		iterator.enumerateKeys { (key, stop) -> Void in
 			actual.append(String(data: key, encoding: .utf8)!)
@@ -110,7 +110,7 @@ class RocksDBIteratorTests : RocksDBTests {
 		try! rocks.setData("value 3", forKey: "key 3")
 
 		var actual = [String]()
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 
 		iterator.enumerateKeys(inReverse: true, using: { (key, stop) -> Void in
 			actual.append(String(data: key, encoding: .utf8)!)
@@ -133,7 +133,7 @@ class RocksDBIteratorTests : RocksDBTests {
 		try! rocks.setData("value 4", forKey: "key 4")
 
 		var actual = [String]()
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 
 		iterator.enumerateKeys(in: RocksDBMakeKeyRange("key 2", nil), reverse: false) { (key, stop) -> Void in
 			actual.append(String(data: key, encoding: .utf8)!)
@@ -156,7 +156,7 @@ class RocksDBIteratorTests : RocksDBTests {
 		try! rocks.setData("value 4", forKey: "key 4")
 
 		var actual = [String]()
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 
 		iterator.enumerateKeys(in: RocksDBMakeKeyRange(nil, "key 4"), reverse: false) { (key, stop) -> Void in
 			actual.append(String(data: key, encoding: .utf8)!)
@@ -179,7 +179,7 @@ class RocksDBIteratorTests : RocksDBTests {
 		try! rocks.setData("value 4", forKey: "key 4")
 
 		var actual = [String]()
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 
 		iterator.enumerateKeys(in: RocksDBMakeKeyRange("key 2", "key 4"), reverse: false) { (key, stop) -> Void in
 			actual.append(String(data: key, encoding: .utf8)!)
@@ -201,7 +201,7 @@ class RocksDBIteratorTests : RocksDBTests {
 		try! rocks.setData("value 3", forKey: "key 3")
 
 		var actual = [String]()
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 
 		iterator.enumerateKeysAndValues { (key, value, stop) -> Void in
 			actual.append(String(data: key, encoding: .utf8)!)
@@ -224,7 +224,7 @@ class RocksDBIteratorTests : RocksDBTests {
 		try! rocks.setData("value 3", forKey: "key 3")
 
 		var actual = [String]()
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 
 		iterator.enumerateKeysAndValues(inReverse: true, using: { (key, value, stop) -> Void in
 			actual.append(String(data: key, encoding: .utf8)!)
@@ -248,7 +248,7 @@ class RocksDBIteratorTests : RocksDBTests {
 		try! rocks.setData("value 4", forKey: "key 4")
 
 		var actual = [String]()
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 
 		iterator.enumerateKeysAndValues(in: RocksDBMakeKeyRange("key 2", nil), reverse: false) { (key, value, stop) -> Void in
 			actual.append(String(data: key, encoding: .utf8)!)
@@ -272,7 +272,7 @@ class RocksDBIteratorTests : RocksDBTests {
 		try! rocks.setData("value 4", forKey: "key 4")
 
 		var actual = [String]()
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 
 		iterator.enumerateKeysAndValues(in: RocksDBMakeKeyRange(nil, "key 4"), reverse: false) { (key, value, stop) -> Void in
 			actual.append(String(data: key, encoding: .utf8)!)
@@ -296,7 +296,7 @@ class RocksDBIteratorTests : RocksDBTests {
 		try! rocks.setData("value 4", forKey: "key 4")
 
 		var actual = [String]()
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 
 		iterator.enumerateKeysAndValues(in: RocksDBMakeKeyRange("key 2", "key 4"), reverse: false) { (key, value, stop) -> Void in
 			actual.append(String(data: key, encoding: .utf8)!)

@@ -20,7 +20,7 @@ class RocksDBSnapshotTests : RocksDBTests {
 		try! rocks.setData("value 2", forKey: "key 2")
 		try! rocks.setData("value 3", forKey: "key 3")
 
-		let snapshot = rocks.snapshot()
+		let snapshot = rocks.snapshot()!
 
 		try! rocks.deleteData(forKey: "key 1")
 		try! rocks.setData("value 4", forKey: "key 4")
@@ -45,13 +45,13 @@ class RocksDBSnapshotTests : RocksDBTests {
 		try! rocks.setData("value 2", forKey: "key 2")
 		try! rocks.setData("value 3", forKey: "key 3")
 
-		let snapshot = rocks.snapshot()
+		let snapshot = rocks.snapshot()!
 
 		try! rocks.deleteData(forKey: "key 1")
 		try! rocks.setData("value 4", forKey: "key 4")
 
 		var actual = [String]()
-		var iterator = snapshot.iterator()
+		var iterator = snapshot.iterator()!
 		iterator.enumerateKeys { (key, stop) -> Void in
 			actual.append(String(data: key, encoding: .utf8)!)
 		}
@@ -63,7 +63,7 @@ class RocksDBSnapshotTests : RocksDBTests {
 
 		actual.removeAll()
 
-		iterator = snapshot.iterator()
+		iterator = snapshot.iterator()!
 		iterator.enumerateKeys { (key, stop) -> Void in
 			actual.append(String(data: key, encoding: .utf8)!)
 		}
@@ -78,13 +78,13 @@ class RocksDBSnapshotTests : RocksDBTests {
 		})
 
 		try! rocks.setData("value 1", forKey: "key 1")
-		let snapshot1 = rocks.snapshot()
+		let snapshot1 = rocks.snapshot()!
 
 		try! rocks.setData("value 2", forKey: "key 2")
-		let snapshot2 = rocks.snapshot()
+		let snapshot2 = rocks.snapshot()!
 
 		try! rocks.setData("value 3", forKey: "key 3")
-		let snapshot3 = rocks.snapshot()
+		let snapshot3 = rocks.snapshot()!
 
 		XCTAssertEqual(snapshot1.sequenceNumber(), 1 as UInt64)
 		XCTAssertEqual(snapshot2.sequenceNumber(), 2 as UInt64)

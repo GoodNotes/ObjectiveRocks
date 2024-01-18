@@ -23,7 +23,7 @@ class RocksDBPrefixExtractorTests : RocksDBTests {
 		try! rocks.setData("x", forKey: "101A")
 		try! rocks.setData("x", forKey: "101B")
 
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 		var keys = [String]()
 
 		iterator.enumerateKeys(withPrefix: "100", using: { (key, stop) -> Void in
@@ -97,7 +97,7 @@ class RocksDBPrefixExtractorTests : RocksDBTests {
 		try! rocks.setData("x", forKey: "1022")
 		try! rocks.setData("x", forKey: "5323")
 
-		let iterator = rocks.iterator()
+		let iterator = rocks.iterator()!
 		var keys = [String]()
 
 		iterator.enumerateKeys(withPrefix: "10", using: { (key, stop) -> Void in

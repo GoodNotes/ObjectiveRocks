@@ -16,14 +16,18 @@ protocol DataConvertible {
 
 extension DataConvertible {
 	init?(data: Data) {
-		guard data.count == MemoryLayout<Self>.size else {
-			return nil
-		}
-		self = data.withUnsafeBytes { $0.pointee }
+        guard data.count == MemoryLayout<Self>.size else {
+            return nil
+        }
+        self = data.withUnsafeBytes { rawBufferPointer in
+            guard let pointer = rawBufferPointer.baseAddress?.assumingMemoryBound(to: Self.self) else {
+                fatalError()
+            }
+            return pointer.pointee
+        }
 	}
 	var data: Data {
-		var value = self
-		return Data(buffer: UnsafeBufferPointer(start: &value, count: 1))
+        withUnsafeBytes(of: self) { Data($0) }
 	}
 }
 
