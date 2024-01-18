@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "lz4-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/goodnotes/lz4-swift",
+      "state" : {
+        "revision" : "1711e6db47e500523560fad63b690634c0c790e0",
+        "version" : "1.9.4"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -804,4 +804,19 @@
     return result;
 }
 
+#pragma mark - Repair
+
++ (BOOL)repairDB:(NSString *)dbPath options:(RocksDBOptions *)options error:(NSError **)error {
+    rocksdb::Status s = rocksdb::RepairDB(dbPath.UTF8String, options.options);
+
+    if (!s.ok()) {
+        if (error != NULL) {
+            *error =  [RocksDBError errorWithRocksStatus:s];
+        }
+        return NO;
+    }
+
+    return YES;
+}
+
 @end

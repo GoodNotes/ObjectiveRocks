@@ -28,6 +28,7 @@
 #endif
 }
 @property (nonatomic, assign) const rocksdb::DBOptions options;
+@property (nonatomic, strong) RocksDBEnv *env;
 @end
 
 @implementation RocksDBDatabaseOptions
@@ -188,6 +189,7 @@
 }
 
 - (void)setEnv:(RocksDBEnv*)env {
+    _env = env;
     _options.env = env.env;
 }
 

@@ -46,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<RocksDBThreadStatus *> *)threadList;
 #endif
 
++ (RocksDBEnv*)mock;
+
 @end
 
 NS_ASSUME_NONNULL_END

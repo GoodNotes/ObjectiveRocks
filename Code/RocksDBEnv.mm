@@ -11,6 +11,8 @@
 #import "RocksDBThreadStatus.h"
 #import <rocksdb/env.h>
 #import <rocksdb/thread_status.h>
+#import <rocksdb/utilities/object_registry.h>
+#import <rocksdb/utilities/options_type.h>
 
 #pragma mark - Informal Protocols
 
@@ -96,6 +98,28 @@
 	}
 
 	return threadList;
+}
+
+#pragma mark - Mock
+
++ (RocksDBEnv*)mock
+{
+    // 1. Register the built in environments
+    rocksdb::ConfigOptions options;
+    rocksdb::Env *dummyEnv = nullptr;
+    rocksdb::Env::CreateFromString(options, "MockEnv", &dummyEnv);
+
+    // 2. Create a new MockEnv
+    auto envFactory = rocksdb::ObjectLibrary::Default()->FindFactory<rocksdb::Env>("MockEnv");
+    std::unique_ptr<rocksdb::Env> mockEnvPtr;
+    std::string errMsg;
+
+    envFactory("", &mockEnvPtr, &errMsg);
+
+    RocksDBEnv *mock = [RocksDBEnv new];
+    mock.env = mockEnvPtr.release();
+
+    return mock;
 }
 
 @end

@@ -13,15 +13,17 @@ let package = Package(
             targets: ["ObjectiveRocks"]),
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
+        .package(url: "https://github.com/goodnotes/lz4-swift", from: "1.9.4")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "ObjectiveRocks",
-            dependencies: ["RocksDB", "RocksLZ4"],
+            dependencies: [
+                "RocksDB",
+                .product(name: "lz4", package: "lz4-swift")
+            ],
             path: "Code",
             publicHeadersPath: "./"
         ),
@@ -52,17 +54,6 @@ let package = Package(
             name: "RocksDB",
             url: "https://github.com/GoodNotes/rocksdb/releases/download/v8.10.0/RocksDB.xcframework.zip",
             checksum: "70b11dbb039a4e63fc7f4d100c49fb5dbd73db8a5cdefe24b6ee0eb32d1bda39"
-        ),
-        .target(
-            name: "RocksLZ4",
-            path: "lz4",
-            sources: [
-                "lz4.c",
-                "lz4.h",
-                "lz4hc.c",
-                "lz4hc.h",
-            ],
-            publicHeadersPath: "."
         )
     ],
     cxxLanguageStandard: .cxx20

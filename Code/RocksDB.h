@@ -590,6 +590,10 @@ typedef void (^RestoreBlock)(NSError * __autoreleasing *);
 - (nullable id)withBulkLoad:(id (NS_NOESCAPE ^)(void))actionBlock
                       error:(NSError * __autoreleasing *)error;
 
+#pragma mark - Repair
+
++ (BOOL)repairDB:(NSString *)dbPath options:(RocksDBOptions *)options error:(NSError **)error;
+
 @end
 
 NS_ASSUME_NONNULL_END
