@@ -52,8 +52,8 @@ let package = Package(
         ),
         .binaryTarget(
             name: "RocksDB",
-            url: "https://github.com/GoodNotes/rocksdb/releases/download/v8.10.0/RocksDB.xcframework.zip",
-            checksum: "70b11dbb039a4e63fc7f4d100c49fb5dbd73db8a5cdefe24b6ee0eb32d1bda39"
+            url: "https://github.com/GoodNotes/rocksdb/releases/download/v8.11.4/RocksDB.xcframework.zip",
+            checksum: "a7cb9490d890c040bcce53d12e4853214320b27ae6318537ba56171545a0d4a5"
         )
     ],
     cxxLanguageStandard: .cxx20
