@@ -9,6 +9,7 @@
 #import "RocksDBCache.h"
 
 #import <rocksdb/cache.h>
+#import <rocksdb/advanced_cache.h>
 
 @interface RocksDBCache ()
 {
@@ -37,6 +38,15 @@
 		_cache = cache;
 	}
 	return self;
+}
+
+- (void)eraseUnreferencedEntries
+{
+    @synchronized(self) {
+        if (_cache != nullptr) {
+            _cache->EraseUnRefEntries();
+        }
+    }
 }
 
 - (void)dealloc

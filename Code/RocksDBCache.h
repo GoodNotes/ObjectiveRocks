@@ -35,6 +35,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)LRUCacheWithCapacity:(size_t)capacity numShardsBits:(int)numShardBits;
 
+
+/**
+ Removes all unreferenced entries from the cache.
+ */
+- (void)eraseUnreferencedEntries;
+
 @end
 
 NS_ASSUME_NONNULL_END
