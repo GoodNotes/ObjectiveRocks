@@ -90,10 +90,7 @@
 - (void)dealloc
 {
 	@synchronized(self) {
-		if (_tableFactory != nullptr) {
-			delete _tableFactory;
-			_tableFactory = nullptr;
-		}
+        _tableFactory = nullptr;
 	}
 }
 
