@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "ObjectiveRocks",
-    platforms: [.iOS(.v15), .macCatalyst(.v15), .macOS(.v12)],
+    platforms: [.iOS(.v15), .macCatalyst(.v15)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -32,6 +32,7 @@ let package = Package(
             dependencies: ["ObjectiveRocks"],
             path: "Tests",
             exclude: [
+                "Info.plist",
                 "RocksDBIndexedWriteBatchTests.m",
                 "RocksDBReadOnlyTests.m",
                 "RocksDBBackupTests.mm",
@@ -52,8 +53,8 @@ let package = Package(
         ),
         .binaryTarget(
             name: "RocksDB",
-            url: "https://github.com/GoodNotes/rocksdb/releases/download/v9.10.0/RocksDB.xcframework.zip",
-            checksum: "48ad2e911d8b48e2e69abce9d506e99bdaf05f4072eacb42f2a48d33f8dc1f70"
+            url: "https://github.com/GoodNotes/rocksdb/releases/download/v11.0.4/RocksDB.xcframework.zip?ts=20260414-1329",
+            checksum: "1c4ffb565b8d998c79ea068147d5e6697633daa247c19d561bfca4f9d05d643f"
         )
     ],
     cxxLanguageStandard: .cxx20

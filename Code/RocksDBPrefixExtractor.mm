@@ -62,7 +62,7 @@
 		_prefixCandidateBlock = [prefixCandidateBlock copy];
 		_validPrefixBlock = [validPrefixBlock copy];
 		_sliceTransform = RocksDBCallbackSliceTransform((__bridge void *)self, _name.UTF8String,
-														&trampolineTransform, &trampolineInDomain, &trampolineInRange);
+														&trampolineTransform, &trampolineInDomain, &trampolineSameResultWhenAppended);
 	}
 	return self;
 }
@@ -106,6 +106,11 @@ bool trampolineInDomain(void* instance, const rocksdb::Slice& src)
 bool trampolineInRange(void* instance, const rocksdb::Slice& dst)
 {
 	return [(__bridge id)instance isPrefixValid:dst];
+}
+
+bool trampolineSameResultWhenAppended(void* instance, const rocksdb::Slice& prefix)
+{
+	return [(__bridge id)instance isPrefixValid:prefix];
 }
 
 - (BOOL)isPrefixValid:(const rocksdb::Slice &)prefixSlice

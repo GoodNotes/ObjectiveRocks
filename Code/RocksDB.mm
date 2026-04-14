@@ -28,6 +28,8 @@
 #import "RocksDBError.h"
 #import "RocksDBSlice.h"
 
+#include <memory>
+
 #include <rocksdb/db.h>
 #include <rocksdb/slice.h>
 #include <rocksdb/options.h>
@@ -195,10 +197,11 @@
 - (BOOL)openDatabaseReadOnly:(BOOL)readOnly error:(NSError**)error
 {
 	rocksdb::Status status;
+	std::unique_ptr<rocksdb::DB> db;
 	if (readOnly) {
-		status = rocksdb::DB::OpenForReadOnly(_options.options, _path.UTF8String, &_db);
+		status = rocksdb::DB::OpenForReadOnly(_options.options, _path.UTF8String, &db);
 	} else {
-		status = rocksdb::DB::Open(_options.options, _path.UTF8String, &_db);
+		status = rocksdb::DB::Open(_options.options, _path.UTF8String, &db);
 	}
 
 	if (!status.ok()) {
@@ -208,6 +211,7 @@
 		[self close];
 		return NO;
 	}
+	_db = db.release();
 	_columnFamily = _db->DefaultColumnFamily();
 	_closed = false;
 
@@ -217,6 +221,7 @@
 - (BOOL)openColumnFamilies:(RocksDBColumnFamilyDescriptor *)descriptor readOnly:(BOOL)readOnly error:(NSError**)error
 {
 	rocksdb::Status status;
+	std::unique_ptr<rocksdb::DB> db;
 	std::vector<rocksdb::ColumnFamilyDescriptor> *columnFamilies = descriptor.columnFamilies;
 	_columnFamilyHandles = new std::vector<rocksdb::ColumnFamilyHandle *>;
 
@@ -225,13 +230,13 @@
 											  _path.UTF8String,
 											  *columnFamilies,
 											  _columnFamilyHandles,
-											  &_db);
+											  &db);
 	} else {
 		status = rocksdb::DB::Open(_options.options,
 								   _path.UTF8String,
 								   *columnFamilies,
 								   _columnFamilyHandles,
-								   &_db);
+								   &db);
 	}
 
 
@@ -242,6 +247,7 @@
 		[self close];
 		return NO;
 	}
+	_db = db.release();
 	_columnFamily = _db->DefaultColumnFamily();
 	_closed = false;
 

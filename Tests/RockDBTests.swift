@@ -12,7 +12,7 @@ import ObjectiveRocks
 
 // MARK:- Extension
 
-extension Data: ExpressibleByStringLiteral {
+extension Data: @retroactive ExpressibleByStringLiteral {
 	public init(stringLiteral value: String) {
 		self = value.data(using: .utf8)!
 	}

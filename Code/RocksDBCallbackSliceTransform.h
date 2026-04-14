@@ -14,12 +14,12 @@
 
 typedef rocksdb::Slice (* TransformCallback)(void* instance, const rocksdb::Slice& src);
 typedef bool (* InDomainCallback)(void* instance, const rocksdb::Slice& src);
-typedef bool (* InRangeCallback)(void* instance, const rocksdb::Slice& dst);
+typedef bool (* SameResultWhenAppendedCallback)(void* instance, const rocksdb::Slice& prefix);
 
 extern rocksdb::SliceTransform* RocksDBCallbackSliceTransform(void* instance,
 															  const char* name,
 															  TransformCallback transform,
 															  InDomainCallback domain,
-															  InRangeCallback range);
+															  SameResultWhenAppendedCallback sameResultWhenAppended);
 
 #endif /* defined(__ObjectiveRocks__RocksDBCallbackSliceTransform__) */

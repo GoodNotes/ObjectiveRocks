@@ -15,14 +15,14 @@ private:
 	const char* name;
 	TransformCallback transformCallback;
 	InDomainCallback inDomainCallback;
-	InRangeCallback inRangeCallback;
+	SameResultWhenAppendedCallback sameResultWhenAppendedCallback;
 	
 public:
 	RocksDBCallbackSliceTransformImpl(void* instance, const char* name,
 									  TransformCallback transform,
 									  InDomainCallback domain,
-									  InRangeCallback range):
-	instance(instance), name(name), transformCallback(transform), inDomainCallback(domain), inRangeCallback(range) {}
+									  SameResultWhenAppendedCallback sameResultWhenAppended):
+	instance(instance), name(name), transformCallback(transform), inDomainCallback(domain), sameResultWhenAppendedCallback(sameResultWhenAppended) {}
 
 	virtual const char* Name() const
 	{
@@ -39,9 +39,9 @@ public:
 		return inDomainCallback(instance, src);
 	}
 
-	virtual bool InRange(const rocksdb::Slice& dst) const
+	virtual bool SameResultWhenAppended(const rocksdb::Slice& prefix) const
 	{
-		return inRangeCallback(instance, dst);
+		return sameResultWhenAppendedCallback(instance, prefix);
 	}
 
 };
@@ -50,7 +50,7 @@ rocksdb::SliceTransform* RocksDBCallbackSliceTransform(void* instance,
 													   const char* name,
 													   TransformCallback transform,
 													   InDomainCallback domain,
-													   InRangeCallback range)
+													   SameResultWhenAppendedCallback sameResultWhenAppended)
 {
-	return new RocksDBCallbackSliceTransformImpl(instance, name, transform, domain, range);
+	return new RocksDBCallbackSliceTransformImpl(instance, name, transform, domain, sameResultWhenAppended);
 }
