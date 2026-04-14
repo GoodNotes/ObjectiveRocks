@@ -9,7 +9,7 @@
 #import "RocksDBSnapshot.h"
 #import "RocksDB+Private.h"
 
-#import <rocksdb/db.h>
+#import <RocksDB/rocksdb/db.h>
 
 @interface RocksDBReadOptions (Private)
 @property (nonatomic, assign) rocksdb::ReadOptions options;

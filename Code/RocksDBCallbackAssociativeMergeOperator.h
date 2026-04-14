@@ -10,9 +10,9 @@
 #define __ObjectiveRocks__RocksDBCallbackAssociativeMergeOperator__
 
 #import <string>
-#import <rocksdb/slice.h>
-#import <rocksdb/env.h>
-#import <rocksdb/merge_operator.h>
+#import <RocksDB/rocksdb/slice.h>
+#import <RocksDB/rocksdb/env.h>
+#import <RocksDB/rocksdb/merge_operator.h>
 
 typedef bool (* MergeCallback)(void* instacne,
 							   const rocksdb::Slice& key,

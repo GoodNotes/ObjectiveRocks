@@ -9,10 +9,10 @@
 #import "RocksDBEnv.h"
 
 #import "RocksDBThreadStatus.h"
-#import <rocksdb/env.h>
-#import <rocksdb/thread_status.h>
-#import <rocksdb/utilities/object_registry.h>
-#import <rocksdb/utilities/options_type.h>
+#import <RocksDB/rocksdb/env.h>
+#import <RocksDB/rocksdb/thread_status.h>
+#import <RocksDB/rocksdb/utilities/object_registry.h>
+#import <RocksDB/rocksdb/utilities/options_type.h>
 
 #pragma mark - Informal Protocols
 

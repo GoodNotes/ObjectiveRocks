@@ -8,7 +8,7 @@
 
 #import "RocksDBStatistics.h"
 
-#import <rocksdb/statistics.h>
+#import <RocksDB/rocksdb/statistics.h>
 
 #pragma mark - Informal Protocols
 

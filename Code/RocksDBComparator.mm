@@ -10,8 +10,8 @@
 #import "RocksDBSlice.h"
 #import "RocksDBCallbackComparator.h"
 
-#import <rocksdb/comparator.h>
-#include <rocksdb/slice.h>
+#import <RocksDB/rocksdb/comparator.h>
+#include <RocksDB/rocksdb/slice.h>
 
 @interface RocksDBComparator ()
 {

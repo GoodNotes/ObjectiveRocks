@@ -8,7 +8,7 @@
 
 #import "RocksDBProperties.h"
 
-#import <rocksdb/db.h>
+#import <RocksDB/rocksdb/db.h>
 
 NSString * ResolveProperty(RocksDBProperty property) {
 	switch (property) {

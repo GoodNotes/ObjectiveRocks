@@ -17,9 +17,9 @@
 #import "RocksDBError.h"
 #import "RocksDBSlice.h"
 
-#import <rocksdb/db.h>
-#import <rocksdb/options.h>
-#import <rocksdb/utilities/write_batch_with_index.h>
+#import <RocksDB/rocksdb/db.h>
+#import <RocksDB/rocksdb/options.h>
+#import <RocksDB/rocksdb/utilities/write_batch_with_index.h>
 
 @interface RocksDBIndexedWriteBatch ()
 {

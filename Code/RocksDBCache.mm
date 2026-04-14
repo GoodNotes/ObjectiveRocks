@@ -8,8 +8,8 @@
 
 #import "RocksDBCache.h"
 
-#import <rocksdb/cache.h>
-#import <rocksdb/advanced_cache.h>
+#import <RocksDB/rocksdb/cache.h>
+#import <RocksDB/rocksdb/advanced_cache.h>
 
 @interface RocksDBCache ()
 {

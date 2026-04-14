@@ -12,8 +12,8 @@
 #import "RocksDBColumnFamily+Private.h"
 #import "RocksDBSlice.h"
 
-#import <rocksdb/write_batch_base.h>
-#import <rocksdb/write_batch.h>
+#import <RocksDB/rocksdb/write_batch_base.h>
+#import <RocksDB/rocksdb/write_batch.h>
 
 @interface RocksDBWriteBatch ()
 {

@@ -8,7 +8,7 @@
 
 #import "RocksDBPlainTableOptions.h"
 
-#import <rocksdb/table.h>
+#import <RocksDB/rocksdb/table.h>
 
 @interface RocksDBPlainTableOptions ()
 {

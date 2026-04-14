@@ -9,7 +9,7 @@
 #import "RocksDBWriteBatchIterator.h"
 #import "RocksDBSlice.h"
 
-#import <rocksdb/utilities/write_batch_with_index.h>
+#import <RocksDB/rocksdb/utilities/write_batch_with_index.h>
 
 @interface RocksDBWriteBatchEntry (Private)
 @property (nonatomic, assign) RocksDBWriteBatchEntryType type;

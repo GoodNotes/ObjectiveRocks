@@ -8,7 +8,7 @@
 
 #import "RocksDBTableFactory.h"
 
-#import <rocksdb/table.h>
+#import <RocksDB/rocksdb/table.h>
 
 @interface RocksDBBlockBasedTableOptions ()
 @property (nonatomic, assign) rocksdb::BlockBasedTableOptions options;

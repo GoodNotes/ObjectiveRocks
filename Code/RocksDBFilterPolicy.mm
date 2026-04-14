@@ -8,7 +8,7 @@
 
 #import "RocksDBFilterPolicy.h"
 
-#import <rocksdb/filter_policy.h>
+#import <RocksDB/rocksdb/filter_policy.h>
 
 @interface RocksDBFilterPolicy ()
 {

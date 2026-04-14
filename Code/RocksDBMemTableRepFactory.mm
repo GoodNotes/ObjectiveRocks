@@ -8,7 +8,7 @@
 
 #import "RocksDBMemTableRepFactory.h"
 
-#import <rocksdb/memtablerep.h>
+#import <RocksDB/rocksdb/memtablerep.h>
 
 @interface RocksDBMemTableRepFactory ()
 {

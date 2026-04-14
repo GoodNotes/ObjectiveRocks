@@ -30,9 +30,9 @@
 
 #include <memory>
 
-#include <rocksdb/db.h>
-#include <rocksdb/slice.h>
-#include <rocksdb/options.h>
+#include <RocksDB/rocksdb/db.h>
+#include <RocksDB/rocksdb/slice.h>
+#include <RocksDB/rocksdb/options.h>
 
 #if !(defined(ROCKSDB_LITE) && defined(TARGET_OS_IPHONE))
 #import "RocksDBColumnFamilyMetaData+Private.h"

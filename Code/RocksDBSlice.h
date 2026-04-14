@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <rocksdb/slice.h>
+#import <RocksDB/rocksdb/slice.h>
 
 NS_INLINE rocksdb::Slice SliceFromData(NSData *data)
 {

@@ -9,7 +9,7 @@
 #import "RocksDBColumnFamily.h"
 #import "RocksDB+Private.h"
 
-#import <rocksdb/db.h>
+#import <RocksDB/rocksdb/db.h>
 
 @implementation RocksDBColumnFamily
 

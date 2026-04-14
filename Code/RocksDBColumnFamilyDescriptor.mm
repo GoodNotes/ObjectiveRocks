@@ -8,7 +8,7 @@
 
 #import "RocksDBColumnFamilyDescriptor.h"
 
-#import <rocksdb/db.h>
+#import <RocksDB/rocksdb/db.h>
 
 NSString * const RocksDBDefaultColumnFamilyName = @"default";
 

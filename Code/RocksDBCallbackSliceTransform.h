@@ -9,8 +9,8 @@
 #ifndef __ObjectiveRocks__RocksDBCallbackSliceTransform__
 #define __ObjectiveRocks__RocksDBCallbackSliceTransform__
 
-#include <rocksdb/slice_transform.h>
-#import <rocksdb/slice.h>
+#include <RocksDB/rocksdb/slice_transform.h>
+#import <RocksDB/rocksdb/slice.h>
 
 typedef rocksdb::Slice (* TransformCallback)(void* instance, const rocksdb::Slice& src);
 typedef bool (* InDomainCallback)(void* instance, const rocksdb::Slice& src);

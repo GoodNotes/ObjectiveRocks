@@ -7,7 +7,7 @@
 //
 
 #import "RocksDBWriteOptions.h"
-#import <rocksdb/options.h>
+#import <RocksDB/rocksdb/options.h>
 
 @interface RocksDBWriteOptions ()
 {

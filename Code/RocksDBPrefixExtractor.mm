@@ -10,8 +10,8 @@
 #import "RocksDBSlice.h"
 #import "RocksDBCallbackSliceTransform.h"
 
-#import <rocksdb/slice_transform.h>
-#import <rocksdb/slice.h>
+#import <RocksDB/rocksdb/slice_transform.h>
+#import <RocksDB/rocksdb/slice.h>
 
 @interface RocksDBPrefixExtractor ()
 {

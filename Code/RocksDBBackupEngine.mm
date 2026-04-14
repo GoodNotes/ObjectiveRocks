@@ -10,8 +10,8 @@
 #import "RocksDBError.h"
 #import "RocksDBBackupInfo.h"
 
-#include <rocksdb/db.h>
-#include <rocksdb/utilities/backup_engine.h>
+#include <RocksDB/rocksdb/db.h>
+#include <RocksDB/rocksdb/utilities/backup_engine.h>
 
 #pragma mark - Informal Protocols
 

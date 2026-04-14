@@ -14,12 +14,12 @@
 #import "RocksDBMergeOperator.h"
 #import "RocksDBPrefixExtractor.h"
 
-#import <rocksdb/options.h>
-#import <rocksdb/comparator.h>
-#import <rocksdb/merge_operator.h>
-#import <rocksdb/slice_transform.h>
-#import <rocksdb/memtablerep.h>
-#import <rocksdb/table.h>
+#import <RocksDB/rocksdb/options.h>
+#import <RocksDB/rocksdb/comparator.h>
+#import <RocksDB/rocksdb/merge_operator.h>
+#import <RocksDB/rocksdb/slice_transform.h>
+#import <RocksDB/rocksdb/memtablerep.h>
+#import <RocksDB/rocksdb/table.h>
 
 @class RocksDBOptions;
 

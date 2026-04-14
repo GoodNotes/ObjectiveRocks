@@ -9,8 +9,8 @@
 #ifndef __ObjectiveRocks__RocksDBCallbackComparator__
 #define __ObjectiveRocks__RocksDBCallbackComparator__
 
-#import <rocksdb/comparator.h>
-#import <rocksdb/slice.h>
+#import <RocksDB/rocksdb/comparator.h>
+#import <RocksDB/rocksdb/slice.h>
 
 typedef int (* CompareCallback)(void* instance, const rocksdb::Slice& a, const rocksdb::Slice& b);
 

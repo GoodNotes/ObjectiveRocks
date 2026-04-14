@@ -10,7 +10,7 @@
 #import "RocksDBSlice.h"
 #import "RocksDBError.h"
 
-#import <rocksdb/iterator.h>
+#import <RocksDB/rocksdb/iterator.h>
 
 #pragma mark - Iterator
 

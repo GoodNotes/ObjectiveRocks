@@ -8,7 +8,7 @@
 
 #import "RocksDBReadOptions.h"
 
-#import <rocksdb/options.h>
+#import <RocksDB/rocksdb/options.h>
 
 @interface RocksDBReadOptions ()
 {

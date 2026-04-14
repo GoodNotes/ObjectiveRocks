@@ -10,7 +10,7 @@
 #import "RocksDB+Private.h"
 #import "RocksDBError.h"
 
-#import <rocksdb/utilities/checkpoint.h>
+#import <RocksDB/rocksdb/utilities/checkpoint.h>
 
 @interface RocksDBCheckpoint ()
 {

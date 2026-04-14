@@ -1,0 +1,4 @@
+module ObjectiveRocks {
+  header "ObjectiveRocks.h"
+  export *
+}

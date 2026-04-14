@@ -8,8 +8,8 @@
 
 #import "RocksDBBlockBasedTableOptions.h"
 
-#import <rocksdb/table.h>
-#import <rocksdb/filter_policy.h>
+#import <RocksDB/rocksdb/table.h>
+#import <RocksDB/rocksdb/filter_policy.h>
 
 @interface RocksDBCache ()
 @property (nonatomic, assign) std::shared_ptr<rocksdb::Cache> cache;

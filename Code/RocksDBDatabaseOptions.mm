@@ -10,7 +10,7 @@
 
 #import "RocksDBEnv.h"
 #import "RocksDBEnv+Private.h"
-#import <rocksdb/options.h>
+#import <RocksDB/rocksdb/options.h>
 
 #if !(defined(ROCKSDB_LITE) && defined(TARGET_OS_IPHONE))
 #import "RocksDBStatistics.h"

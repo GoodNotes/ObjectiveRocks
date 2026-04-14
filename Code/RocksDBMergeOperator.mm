@@ -11,8 +11,8 @@
 #import "RocksDBCallbackAssociativeMergeOperator.h"
 #import "RocksDBCallbackMergeOperator.h"
 
-#import <rocksdb/slice.h>
-#import <rocksdb/env.h>
+#import <RocksDB/rocksdb/slice.h>
+#import <RocksDB/rocksdb/env.h>
 
 #pragma mark - Extension
 

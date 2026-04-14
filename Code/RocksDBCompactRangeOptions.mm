@@ -9,7 +9,7 @@
 #import "RocksDBCompactRangeOptions.h"
 #import "RocksDBCompactRangeOptions+Private.h"
 
-#import <rocksdb/options.h>
+#import <RocksDB/rocksdb/options.h>
 
 @interface RocksDBCompactRangeOptions ()
 {

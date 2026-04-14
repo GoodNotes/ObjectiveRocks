@@ -8,7 +8,7 @@
 
 #import "RocksDBError.h"
 
-#import <rocksdb/status.h>
+#import <RocksDB/rocksdb/status.h>
 
 NSString * const RocksDBErrorDomain = @"co.braincookie.objectiverocks.error";
 NSString * const RocksDBSubcodeKey = @"rocksdb.subcode";

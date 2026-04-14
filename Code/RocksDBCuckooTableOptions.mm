@@ -8,7 +8,7 @@
 
 #import "RocksDBCuckooTableOptions.h"
 
-#import <rocksdb/table.h>
+#import <RocksDB/rocksdb/table.h>
 
 @interface RocksDBCuckooTableOptions ()
 {
