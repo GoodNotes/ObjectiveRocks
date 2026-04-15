@@ -12,17 +12,14 @@ let package = Package(
             name: "ObjectiveRocks",
             targets: ["ObjectiveRocks"]),
     ],
-    dependencies: [
-        .package(url: "https://github.com/goodnotes/lz4-swift", from: "1.9.4")
-    ],
+    dependencies: [],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "ObjectiveRocks",
             dependencies: [
-                "RocksDB",
-                .product(name: "lz4", package: "lz4-swift")
+                "RocksDB"
             ],
             path: "Code",
             publicHeadersPath: "./"
@@ -53,8 +50,8 @@ let package = Package(
         ),
         .binaryTarget(
             name: "RocksDB",
-            url: "https://github.com/GoodNotes/rocksdb/releases/download/v11.0.7/RocksDB.xcframework.zip",
-            checksum: "850f309fe54b6b1cbbdaad39d2aa346d844486e211435ae67d428ad38aba0da3"
+            url: "https://github.com/GoodNotes/rocksdb/releases/download/v11.0.8/RocksDB.xcframework.zip",
+            checksum: "ddc7f1aa1f28c8f8596471707e0ca0e8afea0b44ad576cae5ff0319cc193f927"
         )
     ],
     cxxLanguageStandard: .cxx20
